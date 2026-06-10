@@ -79,35 +79,16 @@ const RAW: Record<number, ObsType[] | "all"> = {
 };
 
 /**
- * Returns the allowed obstacle types for a level, or `null` if the level
- * permits every obstacle. Coins are always included so the player can still
- * earn rewards on obstacle-only levels.
+ * Returns the allowed obstacle types for a level. Per product direction, every
+ * level now permits every obstacle that the dev placed in /dev — real players
+ * see exactly what the developer built. Returning null = "no restriction".
  */
-export function getAllowedTypesForLevel(levelIndex: number): Set<ObsType> | null {
-  const entry = RAW[levelIndex];
-  if (!entry) return null;
-  if (entry === "all") return null;
-  return new Set<ObsType>([...entry, "coin"]);
+export function getAllowedTypesForLevel(_levelIndex: number): Set<ObsType> | null {
+  return null;
 }
 
 /** Pretty obstacle list for level pickers / HUD overlays. */
-export function describeLevel(levelIndex: number): string {
-  const entry = RAW[levelIndex];
-  if (!entry) return "Bear, Bull, All Obstacles";
-  if (entry === "all") return "All Obstacles Challenge";
-  return entry
-    .map((t) => ({
-      pipe: "Gold Pipes",
-      poll: "Gold Poles",
-      wall: "Brick Wall Poles",
-      block: "Blocks",
-      spike: "Spikes",
-      hammer: "Hanging Hammers",
-      blade: "Rotating Blades",
-      laser: "Laser Beams",
-      coin: "Bear Coin",
-    } as Record<string, string>)[t] ?? t)
-    .join(", ");
+export function describeLevel(_levelIndex: number): string {
+  return "Gold Pipes, Poles, Walls, Blocks, Spikes, Hammers, Blades, Lasers, Coins";
 }
 
-export const ALL_OBSTACLES = ALL;
