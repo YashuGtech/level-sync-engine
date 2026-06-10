@@ -220,18 +220,12 @@ export function Flappy({ level, objects, levelIndex = 1, devMode = false, editor
     const HAMMER_HEAD_H = 18;
     const BLOCK_TILE = 30;
 
-    // ── Hammer schedule: 3–4 hammers per level, evenly spaced in time ──
-    // Same schedule for Dev Trial and real Telegram runs.
-    // Tier 1–30: NONE. Tier 51+: exactly 3 (shorter). Otherwise 3–4.
-    const hammersAllowed = !allowedTypes || allowedTypes.has("hammer");
-    const HAMMER_COUNT = !hammersAllowed ? 0 : TIER_51_PLUS ? 3 : (3 + Math.floor(Math.random() * 2));
+    // BACKEND-ONLY MODE: no auto-scheduled hammers. Hammers are placed by
+    // the dev team in the level editor and rendered through the per-object
+    // hammer branch below.
+    const hammersAllowed = false;
+    const HAMMER_COUNT = 0;
     const hammerSchedule: number[] = [];
-    {
-      const startT = Math.max(3, level.duration_seconds * 0.12);
-      const endT = Math.max(startT + 1, level.duration_seconds * 0.92);
-      const step = (endT - startT) / Math.max(1, HAMMER_COUNT - 1);
-      for (let i = 0; i < HAMMER_COUNT; i++) hammerSchedule.push(startT + step * i);
-    }
     let hammerCursor = 0;
     // Tier 51+: cap rotating blades to 4–6 per level (consumed from level data).
     // Mandatory 5 blades per level (editor-locked) — never cap below that.
