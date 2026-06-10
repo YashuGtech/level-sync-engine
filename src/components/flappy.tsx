@@ -6,7 +6,7 @@
  */
 import { useEffect, useRef, useState } from "react";
 import type { LevelObject } from "@/lib/game.functions";
-import { getAllowedTypesForLevel } from "@/lib/level-obstacles";
+
 import { sfx } from "@/lib/sfx";
 import bg1Url from "@/assets/flappy-bg/bg1.jpg";
 import bg2Url from "@/assets/flappy-bg/bg2.jpg";

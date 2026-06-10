@@ -147,7 +147,7 @@ function ObstaclePreview({ type, small = false }: { type: ObjType; small?: boole
       <div className="pointer-events-none relative" style={{ width, height }}>
         <div className="absolute inset-x-[10px] top-0 h-[34px] rounded-t-lg" style={goldColumnStyle()} />
         <div className="absolute inset-x-[4px] top-[28px] h-[7px] rounded-sm bg-[#c9941f] shadow-[0_1px_0_rgba(32,14,0,0.45)]" />
-        <div className="absolute inset-x-[18px] top-[40px] h-[14px] rounded-full border border-dashed border-gold-soft/40 bg-black/35" />
+        
         <div className="absolute inset-x-[10px] bottom-0 h-[34px] rounded-b-lg" style={goldColumnStyle()} />
         <div className="absolute inset-x-[4px] bottom-[28px] h-[7px] rounded-sm bg-[#c9941f] shadow-[0_1px_0_rgba(32,14,0,0.45)]" />
       </div>
@@ -158,7 +158,7 @@ function ObstaclePreview({ type, small = false }: { type: ObjType; small?: boole
       <div className="pointer-events-none relative" style={{ width, height }}>
         <div className="absolute left-1/2 top-0 h-[35px] w-[12px] -translate-x-1/2 rounded-t-md" style={goldColumnStyle()} />
         <div className="absolute left-1/2 top-[32px] h-[6px] w-[22px] -translate-x-1/2 rounded-sm bg-[#c9941f]" />
-        <div className="absolute left-1/2 top-[42px] h-[10px] w-[24px] -translate-x-1/2 rounded-full border border-dashed border-gold-soft/40 bg-black/35" />
+        
         <div className="absolute left-1/2 bottom-0 h-[35px] w-[12px] -translate-x-1/2 rounded-b-md" style={goldColumnStyle()} />
         <div className="absolute left-1/2 bottom-[32px] h-[6px] w-[22px] -translate-x-1/2 rounded-sm bg-[#c9941f]" />
       </div>
