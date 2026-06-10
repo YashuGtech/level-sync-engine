@@ -158,7 +158,7 @@ function ObstaclePreview({ type, small = false }: { type: ObjType; small?: boole
       <div className="pointer-events-none relative" style={{ width, height }}>
         <div className="absolute left-1/2 top-0 h-[35px] w-[12px] -translate-x-1/2 rounded-t-md" style={goldColumnStyle()} />
         <div className="absolute left-1/2 top-[32px] h-[6px] w-[22px] -translate-x-1/2 rounded-sm bg-[#c9941f]" />
-        <div className="absolute left-1/2 top-[42px] h-[10px] w-[24px] -translate-x-1/2 rounded-full border border-dashed border-gold-soft/40 bg-black/35" />
+        
         <div className="absolute left-1/2 bottom-0 h-[35px] w-[12px] -translate-x-1/2 rounded-b-md" style={goldColumnStyle()} />
         <div className="absolute left-1/2 bottom-[32px] h-[6px] w-[22px] -translate-x-1/2 rounded-sm bg-[#c9941f]" />
       </div>
