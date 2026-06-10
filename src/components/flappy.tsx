@@ -174,7 +174,7 @@ export function Flappy({ level, objects, levelIndex = 1, devMode = false, editor
     // editor. The per-level PDF allow-list has been removed so every gold
     // pipe, pole, wall, blade, hammer, laser, etc. saved in /dev shows up
     // for real players. No random/template fallback obstacles are spawned.
-    const allowedTypes: Set<never> | null = null;
+    const allowedTypes: Set<string> | null = null;
     const TIER_51_PLUS = levelIndex >= 51;
 
     // ── Scheduled bull + flying bear windows ─────────────────────
