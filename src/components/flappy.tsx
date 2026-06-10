@@ -174,7 +174,7 @@ export function Flappy({ level, objects, levelIndex = 1, devMode = false, editor
     // editor. The per-level PDF allow-list has been removed so every gold
     // pipe, pole, wall, blade, hammer, laser, etc. saved in /dev shows up
     // for real players. No random/template fallback obstacles are spawned.
-    const allowedTypes: Set<never> | null = null;
+    
     const TIER_51_PLUS = levelIndex >= 51;
 
     // ── Scheduled bull + flying bear windows ─────────────────────
@@ -909,12 +909,8 @@ export function Flappy({ level, objects, levelIndex = 1, devMode = false, editor
       let lastPipeSpawnX = -Infinity;
       while (nextIdx < sortedObjs.length && sortedObjs[nextIdx].x_time <= runTime + SPAWN_LEAD_SEC) {
         const obj = sortedObjs[nextIdx];
-        // Per-level allow-list (from the PDF breakdown) — drop disallowed types.
-        // Mandatory obstacles (spike/block/hammer/blade) are ALWAYS allowed so
-        // every level shows the editor-placed locked set during play.
-        const MANDATORY = obj.obj_type === "spike" || obj.obj_type === "block" ||
-                          obj.obj_type === "hammer" || obj.obj_type === "blade";
-        if (!MANDATORY && allowedTypes && !allowedTypes.has(obj.obj_type as never)) { nextIdx++; continue; }
+        // No per-level allow-list — every obstacle the dev placed in /dev
+        // is rendered as-is for real players.
         // Rotating/spinning blades — respect the editor-placed y so admins can
         // position them anywhere on the canvas (no forced snap to top/bottom).
         if (obj.obj_type === "blade") {
