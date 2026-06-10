@@ -1076,31 +1076,10 @@ export function Flappy({ level, objects, levelIndex = 1, devMode = false, editor
         return true;
       });
 
-      /* ── Universal swinging hammers (ceiling) + floor block stacks ── */
-      // Spawn ahead of the camera, but only when the level's allow-list (PDF
-      // breakdown) actually permits each obstacle. Maximum vertical gap is
-      // preserved by keeping block stacks short and hammers small.
-      const universalSpawnX = W + 80;
-      const blocksAllowed = !allowedTypes || allowedTypes.has("block");
-      // Hammers: 3 per level on a fixed time schedule. Smaller arm + head globally.
-      while (hammersAllowed && hammerCursor < hammerSchedule.length && runTime >= hammerSchedule[hammerCursor]) {
-        hammers.push({
-          x: universalSpawnX + Math.random() * 60,
-          phase: Math.random() * Math.PI * 2,
-          period: 1.8 + Math.random() * 0.9,
-          // Shorter arm so the head never crosses into the main flight band.
-          len: H * 0.10 + Math.random() * (H * 0.03),
-        });
-        hammerCursor++;
-      }
-      if (blocksAllowed && universalSpawnX - lastBlockSpawnX > BLOCK_SPACING) {
-        blocks.push({
-          x: universalSpawnX + 40 + Math.random() * 80,
-          cols: 2 + Math.floor(Math.random() * 2), // 2-3 wide (smaller, more gap)
-          rows: 1 + Math.floor(Math.random() * 2), // 1-2 tall
-        });
-        lastBlockSpawnX = universalSpawnX;
-      }
+      /* BACKEND-ONLY MODE: no universal random hammers or floor block stacks.
+       * Every obstacle visible to real players comes from level_objects in the
+       * database. The hammers[] / blocks[] arrays below are kept (rendering
+       * no-ops when empty) so the existing render loops remain valid. */
 
 
       // Render + move hammers
