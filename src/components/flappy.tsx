@@ -170,12 +170,11 @@ export function Flappy({ level, objects, levelIndex = 1, devMode = false, editor
     // Maximum vertical gap on level 1; comfortable gap on early levels.
     const ePipeGap = IS_LEVEL_1 ? 300 : ULTRA_EASY ? 260 : FIXED_PIPE_GAP;
 
-    // Per-level allow-list from the official Flapy_Gtech_100_Level_Breakdown PDF.
-    // null = all obstacles permitted. Coin is always permitted in the helper.
-    // Editor preview: bypass the allow-list so every obstacle placed in the
-    // level editor actually renders (otherwise level-1 / level-N restrictions
-    // would silently drop blocks, hammers, blades, spike-walls, etc).
-    const allowedTypes = editorPreview ? null : getAllowedTypesForLevel(levelIndex);
+    // BACKEND-ONLY MODE: render exactly what the dev team placed in the
+    // editor. The per-level PDF allow-list has been removed so every gold
+    // pipe, pole, wall, blade, hammer, laser, etc. saved in /dev shows up
+    // for real players. No random/template fallback obstacles are spawned.
+    const allowedTypes: Set<never> | null = null;
     const TIER_51_PLUS = levelIndex >= 51;
 
     // ── Scheduled bull + flying bear windows ─────────────────────
