@@ -42,16 +42,24 @@ declare global {
   }
 }
 
+const POST_LOGIN_URL = "https://gtcflappygame.com";
+
+function redirectAfterLogin() {
+  if (typeof window !== "undefined") {
+    window.location.replace(POST_LOGIN_URL);
+  }
+}
+
 function AuthPage() {
   const { user, signInWithWebToken } = useSession();
   const navigate = useNavigate();
   const widgetHost = useRef<HTMLDivElement | null>(null);
   const [busy, setBusy] = useState(false);
 
-  // Already signed in → bounce home.
+  // Already signed in → bounce to the external game site.
   useEffect(() => {
-    if (user) void navigate({ to: "/" });
-  }, [user, navigate]);
+    if (user) redirectAfterLogin();
+  }, [user]);
 
   // Mount Telegram Login Widget.
   useEffect(() => {
@@ -68,7 +76,7 @@ function AuthPage() {
         const r = await webLoginWidget({ data: { widgetData } });
         await signInWithWebToken(r.token);
         toast.success("Signed in with Telegram");
-        await navigate({ to: "/" });
+        redirectAfterLogin();
       } catch (e) {
         toast.error(e instanceof Error ? e.message : "Sign in failed");
       } finally {
