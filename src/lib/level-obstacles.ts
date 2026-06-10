@@ -92,3 +92,6 @@ export function describeLevel(_levelIndex: number): string {
   return "Gold Pipes, Poles, Walls, Blocks, Spikes, Hammers, Blades, Lasers, Coins";
 }
 
+export const ALL_OBSTACLES = ALL;
+
+
